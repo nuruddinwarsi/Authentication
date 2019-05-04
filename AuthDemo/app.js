@@ -27,6 +27,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+/*Responsible for reading the session,taking encoded data from the session, decoding it(deserialize) and 
+ *then encoding it(serialize) and putting it back into the session
+ *passportLocalMongoose in user.js adds this directly without the need for creating our own  
+ */
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.get("/", function (req, res) {
     res.render("home");
 });
