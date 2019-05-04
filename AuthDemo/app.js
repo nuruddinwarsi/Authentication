@@ -7,6 +7,9 @@ var express = require("express"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
 
+var app = express();
+app.set("view engine", "ejs");
+
 mongoose.connect("mongodb://localhost:27017/authdemo", {
     useNewUrlParser: true
 });
@@ -14,11 +17,11 @@ mongoose.connect("mongodb://localhost:27017/authdemo", {
 app.use(session({
     // Secret is the keyword used to encode and decode the sessions
     // It can be bassically and keyword or sentence
-    secret: "Kamehameha"
+    secret: "Kamehameha",
+    resave: false,
+    saveUninitialized: false
 }));
 
-var app = express();
-app.set("view engine", "ejs");
 
 // Tell express to use required passport package and sets it up
 app.use(passport.initialize());
