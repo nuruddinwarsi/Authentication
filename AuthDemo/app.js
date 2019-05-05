@@ -1,8 +1,8 @@
 var express = require("express"),
     mongoose = require("mongoose"),
-    passport = require("passport"),
     bodyParser = require("body-parser"),
     User = require("./models/user"),
+    passport = require("passport"),
     session = require("express-session"),
     localStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
@@ -85,7 +85,7 @@ app.get("/login", function (req, res) {
 // login logic
 app.post("/login", passport.authenticate("local", {
         successRedirect: "/secret",
-        failureRedirect: "/login"
+        failureRedirect: "/login",
     }),
     function (req, res) {
 
